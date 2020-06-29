@@ -1,5 +1,6 @@
 #A python program to mimic the functionality of a real-world
-#property management system(PMS), found in hotels and residential buildings
+#property management system(PMS), commonly found in hotels and residential buildings
+
 import time
 import datetime
 import csv
@@ -17,7 +18,7 @@ print("1. Search by Name\n" "2. Search by Confirmation #\n" "3. Search by Room #
 time.sleep(1) #mimics loading of the system
 menuSelect = input("Make a Selection: ")
 
-if menuSelect == "1": #DONE
+if menuSelect == "1": 
     nameEntry = input("Please enter Last name: ")
     #opens csv file containing guest records
     with open ('hotelguests.csv', 'rt') as csv_file:
@@ -26,61 +27,69 @@ if menuSelect == "1": #DONE
         for row in csv_reader:
             if row[0] == nameEntry:
                 print(row)
-                #ADD ELIF FOR "GUEST NOT FOUND"
+                #todo: ADD ELIF FOR "GUEST NOT FOUND"
         
 
-elif menuSelect == "2": #DONE
+elif menuSelect == "2": 
     confEntry = input("Enter Confirmation Number: ")
+    #open csv file for guest records/search for confirmation number
     with open ('hotelguests.csv', 'rt') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for column in csv_reader:
             if column[5] == confEntry and confEntry.isdigit():
                 print(column)
-                #ADD ELIF FOR "GUEST NOT FOUND"
+                #todo: ADD ELIF FOR "GUEST NOT FOUND"
 
-elif menuSelect == "3": #DONE
+elif menuSelect == "3":
     roomEntry = input("Enter Room Number: ")
+    #open csv file for guest records/search for room number
     with open ('hotelguests.csv', 'rt') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for column in csv_reader:
             if column[2] == roomEntry and roomEntry.isdigit():
                 print(column)
-                #ADD ELIF FOR "GUEST NOT FOUND"
+                #todo: ADD ELIF FOR "GUEST NOT FOUND"
 
 
-elif menuSelect == "4": #DONE
+elif menuSelect == "4":
+    #open csv file/display all in-house guests
     with open("hotelguests.csv", "r") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for lines in csv_reader:
             print(lines)
 
-elif menuSelect == "5": #DONE
+elif menuSelect == "5":
     depDate = input("Enter Departure Date: ")
+    #open csv file/search for and display guests departing on provided date
     with open ('hotelguests.csv', 'rt') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for column in csv_reader:
             if column[4] == depDate:
                 print(column)
-                #ADD ELIF FOR NO DEPARTURES FOUND
+                #todo: ADD ELIF FOR NO DEPARTURES FOUND
 
-elif menuSelect == "6": #DONE
+elif menuSelect == "6": 
+    #sets variables for reservation input, to be appended to csv file
     lastName = input("Enter a Last Name: ")
     firstName = input("Enter a First Name: ")
     roomNumber = input("Assign Room Number: ")
     arrivalDate = input("Enter an Arrival Date: ")
     departureDate = input("Enter a Departure Date: ")
+    #generates random confirmation number
     confNum = random.randint(150000,160000)
     enterRate = input("Enter Rate Amt: $")
     enterCC = input("Enter a valid Credit Card Number: ")
     enterEXP = input("Enter Expiration Date as mm/yy: ")
+    #open csv file in append mode - append/update file with user input for each variable
     with open('hotelguests.csv', 'a', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow([lastName, firstName, roomNumber, arrivalDate, departureDate, confNum, enterRate, enterCC, enterEXP])
     print("Uploading Reservation...\n")
     time.sleep(3)
+    #prints reservation confirmation as str, using confNum variable(random)
     print("Reservation Uploaded with Confirmation # " + str(confNum))
 
-elif menuSelect == "7": #DONE
+elif menuSelect == "7":
     print("CXL MENU")
     print("---------")
     print("1. Cancel by Last Name \n")
