@@ -5,7 +5,7 @@
 
 
 
-//Display main menu to the user
+//Display main menu & welcome prompt to the user
 
 int main() {
     std::cout << ":::::+Plus Property Management System:::::\n";
@@ -14,11 +14,11 @@ int main() {
     std::cout <<"------------------\n";
     std::cout <<"Property Code: JGH620\n";
     std::cout <<" 1. Search by Name\n 2. Search by Confirmation\n 3. Search by Room\n 4. View In-House Guests\n 5. View Departures\n 6. Make a Reservation\n 7. Cancel a Reservation\n 8. Log-off/Switch User\n";
-
+    //prompts user to make a selection based on menu choices
     int menuSelect = 0;
     std::cout << "Make a Selection: ";
     std::cin >> menuSelect;
-
+    //start loop for menu selection
     if (menuSelect == 1) {
         char lastName;
         std::cout << "Enter Last Name: ";
@@ -63,9 +63,7 @@ int main() {
             std::cout << "User Logged Off\n";
         }
         
-        
-        
-    }
+        }
 }
 
 
